@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project of Async </title>
+
+    <style>
+        body{
+            justify-content: center;
+        }
+
+            .card{
+                justify-content: center;
+                width: 500px;
+                margin: auto;
+                text-align: center;
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 10px;
+            box-shadow: -5px -5px 9px #ffffff73, 5px 5px 7px #5e687949;
+
+            }
+
+            #stop{
+                padding: 4px 30px;
+                border: none;
+                border-radius: 4px;
+                background-color: rgb(245, 53, 6);
+            box-shadow: -5px -5px 9px #ffffff73, 5px 5px 7px #5e687949;
+
+            }
+
+            #start{
+                padding: 4px 30px;
+                border: none;
+                border-radius: 4px;
+                background-color: rgb(12, 250, 12);
+            box-shadow: -5px -5px 9px #ffffff73, 5px 5px 7px #5e687949;
+
+
+            }
+    </style>
+</head>
+
+<body>
+<div class="card">
+    
+    <h1>[ Click on START button to change background coloes | Click on STOP button to stop change colors
+        ]</h1>
+
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+
+</div>
+</body>
+
+<script>
+    const randomColor = function () {
+        const hex = "0123456789ABCDEF"
+        let color = '#'
+
+        for (let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random() * 16)]
+        }
+        return color;
+    }
+
+    let intervalId;
+    const startChangingColor = function () {
+
+        if (!intervalId) {
+            intervalId = setInterval(changeBgColor, 1000);
+        }
+
+        function changeBgColor() {
+            document.body.style.backgroundColor = randomColor();
+        }
+    };
+    const stopChangingColor = function () {
+
+        clearInterval(intervalId);
+        intervalId = null;
+    };
+    document.querySelector('#start').addEventListener('click', startChangingColor);
+
+    document.querySelector('#stop').addEventListener('click', stopChangingColor);
+
+
+</script>
+
+</html>
